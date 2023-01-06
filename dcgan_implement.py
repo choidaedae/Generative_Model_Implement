@@ -27,29 +27,18 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 print(device)
 
-"""Set  hyperparameters (batch_size, image_size, num_epochs, learning rate, beta...)
-
-"""
+"""Set  hyperparameters (batch_size, image_size, num_epochs, learning rate, beta...)"""
 
 datapath = "data/mnist"
-
 batch_size = 128
-
 image_size = 64
-
 nc = 1 
-
 nz = 100
-
 ngf, ndf = 64, 64
-
 num_epochs = 5
-
 lr = 0.0002
-
 beta_1 = 0.5
 beta_2 = 0.999
-
 Leak = 0.2
 
 transforms = transforms.Compose(
@@ -65,6 +54,7 @@ transforms = transforms.Compose(
 # If you train on MNIST, remember to set channels_img to 1
 dataset = datasets.MNIST(root="./dataset/", train=True, transform=transforms,
                        download=True)
+
 
 """Define Generator & Discriminator class """
 
@@ -133,6 +123,7 @@ class Discriminator(nn.Module):
 
   def forward(self, x):
     return self.main(x)
+
 
 """Weight initialization (Using Normalization with std:0.02, mean: 0)"""
 
@@ -227,6 +218,7 @@ for epoch in range(num_epochs):
 
       iters += 1
 
+        
 """Visualization about changing losses """
 
 plt.figure(figsize=(10,5))
@@ -237,6 +229,7 @@ plt.xlabel("iterations")
 plt.ylabel("Loss")
 plt.legend()
 plt.show()
+
 
 """Real Images vs Fake Images"""
 
@@ -254,6 +247,7 @@ plt.axis("off")
 plt.title("Fake Images")
 plt.imshow(np.transpose(G_image_list[-1].cpu(),(1,2,0)))
 plt.show()
+
 
 """Visualization about G's training process"""
 
